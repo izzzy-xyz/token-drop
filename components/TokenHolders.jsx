@@ -1,15 +1,15 @@
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import React, { useState, useEffect } from "react";
-import truncateAddress from "../lib/truncateAddress";
-import styles from "../styles/Home.module.css";
+import truncateAddress from "@lib/truncate-address";
+import styles from "./token-holders.module.css";
 
 export default function TokenHolders() {
   const [loading, setLoading] = useState(true);
   const [holders, setHolders] = useState([]);
   async function checkHolders() {
-    const sdk = new ThirdwebSDK("polygon"); // configure this to your network
+    const sdk = new ThirdwebSDK("mumbai"); // configure this to your network
 
-    const token = sdk.getToken("0x3Cf62752E752671F9B5D383901eE2bECBd1BD56B");
+    const token = sdk.getToken("0xCFbB61aF7f8F39dc946086c378D8cd997C72e2F3");
 
     const balances = await token.history.getAllHolderBalances();
     setHolders(balances);
@@ -25,8 +25,8 @@ export default function TokenHolders() {
   }
 
   return (
-    <>
-      <div className={styles.holderGrid}>
+    <><div className={styles.container}>
+        <div className={styles['card-body']}>
         {holders
           .sort(
             (a, b) =>
@@ -44,7 +44,7 @@ export default function TokenHolders() {
               </p>
             </div>
           ))}
+       </div>
       </div>
     </>
   );
-}
