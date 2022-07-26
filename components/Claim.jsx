@@ -1,8 +1,8 @@
 import { useAddress } from "@thirdweb-dev/react";
 import React, { useState } from "react";
-import styles from "../styles/Home.module.css";
+import styles from "./token-claim.module.css";
 
-export default function Claim({ tokenDropContract }) {
+export default function TokenClaim({ tokenDropContract }: { tokenDropContract: any }) {
   const address = useAddress();
   const [amountToClaim, setAmountToClaim] = useState("");
 
@@ -22,18 +22,17 @@ export default function Claim({ tokenDropContract }) {
   }
 
   return (
-    <div className={styles.claimGrid}>
-      
-      <input
-        type="text"
-        placeholder="Enter amount to claim"
-        onChange={(e) => setAmountToClaim(e.target.value)}
-        className={`${styles.textInput} ${styles.noGapBottom}`}
-      />
-
-      <button onClick={claim} className={styles.mainButton}>
-        Claim
-      </button>
+     <div className={styles.container}>
+      <div className={styles.claimGrid}>
+        <input
+          type="text"
+          placeholder="Enter amount to claim"
+          onChange={(e) => setAmountToClaim(e.target.value)}
+          className={`${styles.textInput} ${styles.noGapBottom}`} />
+        <button onClick={claim} className={styles.mainButton}>
+          Claim
+        </button>
+      </div>
     </div>
   );
 }
